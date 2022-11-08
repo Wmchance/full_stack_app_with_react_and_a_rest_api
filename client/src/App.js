@@ -1,7 +1,21 @@
 import logo from './logo.svg';
 import './App.css';
+import React, { useState, useEffect } from "react";
 
 function App() {
+  const url = 'http://localhost:5000/api/courses';
+  const [courseInfo, updateInfo] = useState('hello');
+  
+  fetch(url)
+    .then((res) => res.json())    
+    .then((res) => {
+        console.log(res)
+        updateInfo(res.courses[1].User.firstName)
+    })
+    .catch((error) => {
+        console.error('Error:', error);
+    });
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +29,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          {courseInfo}
         </a>
       </header>
     </div>
