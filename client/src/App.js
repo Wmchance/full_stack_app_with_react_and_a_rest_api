@@ -10,7 +10,7 @@ function App() {
     .then((res) => res.json())    
     .then((res) => {
         console.log(res)
-        updateInfo(res.courses[1].User.firstName)
+        updateInfo(res.courses[1].description)
     })
     .catch((error) => {
         console.error('Error:', error);
@@ -29,8 +29,11 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          {courseInfo}
+          Learn React
         </a>
+        <p>
+          {courseInfo}
+        </p>
       </header>
     </div>
   );
