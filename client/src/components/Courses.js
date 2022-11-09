@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 const Courses = () => {
     
     const url = 'http://localhost:5000/api/courses';
-    const [courseInfo, updateInfo] = useState('hello');
+    const [coursesInfo, updateInfo] = useState([]);
 
     const getCourses = () => {
         fetch(url)
@@ -22,9 +22,15 @@ const Courses = () => {
       }, []) 
 
     return (
-        <div>
-            <h2>Welcome to our React Photo Gallery!</h2>
-            <p>{courseInfo[1].description}</p>
+        <div className="wrap main--grid">
+            {coursesInfo.map((course) => {
+                return(
+                    <a className="course--module course--link" href="course-detail.html" key={course.id}>
+                        <h2 className="course--label">{course.title}</h2>
+                        <h3 className="course--title">{course.description}</h3>
+                    </a>
+                )
+            })}
         </div>
     )
 
