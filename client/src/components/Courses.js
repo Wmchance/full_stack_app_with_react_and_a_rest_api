@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-//Message seen before a search is made
 const Courses = () => {
     
     const url = 'http://localhost:5000/api/courses';
