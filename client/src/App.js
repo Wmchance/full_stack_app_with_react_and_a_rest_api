@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 
 import Courses from './components/Courses';
+import CourseDetails from './components/CourseDetail';
+
 
 function App() {
   return (
@@ -15,6 +17,11 @@ function App() {
         <Route
           path="/"
           element={<Courses />}
+        />
+  
+        <Route 
+          path="/:id"
+          element={<CourseDetails />}
         />
       </Routes>
     </BrowserRouter>
