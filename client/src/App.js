@@ -9,6 +9,7 @@ import {
 import Courses from './components/Courses';
 import CourseDetails from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
+import UserSignUp from './components/UserSignUp';
 
 function App() {
   return (
@@ -23,6 +24,11 @@ function App() {
         <Route 
           path="/:id"
           element={<CourseDetails />}
+        />
+
+        <Route
+          path="/sign-up"
+          element={<UserSignUp />}
         />
       </Routes>
     </BrowserRouter>
