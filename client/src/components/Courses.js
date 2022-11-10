@@ -25,8 +25,8 @@ const Courses = () => {
             {coursesInfo.map((course) => {
                 return(
                     <a className="course--module course--link" href="course-detail.html" key={course.id}>
-                        <h2 className="course--label">{course.title}</h2>
-                        <h3 className="course--title">{course.description}</h3>
+                        <h2 className="course--label">Course</h2>
+                        <h3 className="course--title">{course.title}</h3>
                     </a>
                 )
             })}
