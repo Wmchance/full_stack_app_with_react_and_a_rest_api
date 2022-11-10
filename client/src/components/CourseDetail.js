@@ -7,7 +7,7 @@ const CourseDetails = () => {
     const location = useLocation(); //React hook to grab data about the location of the current page
     const [courseId, updateId] = useState(location.pathname);
 
-    const url = "http://localhost:5000/api/courses"+courseId;
+    const url = `http://localhost:5000/api/courses${courseId}`;
 
     const [courseInfo, updateInfo] = useState([]);
 
@@ -33,7 +33,7 @@ const CourseDetails = () => {
         <React.Fragment>
             <div className="actions--bar">
                 <div className="wrap">
-                    <a className="button" href="/update-course">Update Course</a>
+                    <a className="button" href={`/${courseInfo.id}/update`}>Update Course</a>
                     <a className="button" href="delete.html">Delete Course</a>
                     <a className="button button-secondary" href="/">Return to List</a>
                 </div>

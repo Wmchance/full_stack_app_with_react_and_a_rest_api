@@ -39,7 +39,7 @@ function App() {
         />
 
         <Route
-          path="/update-course"
+          path="/:id/update"
           element={<UpdateCourse />}
         />
       </Routes>
