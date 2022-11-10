@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useLocation } from 'react-router-dom';
-import ReactMarkdown from 'react-markdown';
+import ReactMarkdown from 'react-markdown'; //https://www.npmjs.com/package/react-markdown
 
 const CourseDetails = () => {
     

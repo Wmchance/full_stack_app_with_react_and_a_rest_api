@@ -1,1 +1,2 @@
 update HTML head info in client/public/index.html
+Adjust CSS in CourseDetails to put estimatedTime & materialsNeeded on the right of the screen

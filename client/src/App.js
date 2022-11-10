@@ -8,11 +8,12 @@ import {
 
 import Courses from './components/Courses';
 import CourseDetails from './components/CourseDetail';
-
+import UserSignIn from './components/UserSignIn';
 
 function App() {
   return (
     <BrowserRouter>
+      <UserSignIn />
       <Routes>
         <Route
           path="/"
