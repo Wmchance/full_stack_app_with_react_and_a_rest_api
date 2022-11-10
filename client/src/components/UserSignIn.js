@@ -27,7 +27,7 @@ const UserSignIn = () => {
                 </button>
             </form>
 
-            <p>Don't have a user account? Click here to <a href="sign-up.html">sign up</a>!</p>
+            <p>Don't have a user account? Click here to <a href="/sign-up">sign up</a>!</p>
         </div>
     )
 

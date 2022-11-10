@@ -33,7 +33,7 @@ const UserSignUp = () => {
                 </button>
             </form>
 
-            <p>Don't have a user account? Click here to <a href="sign-up.html">sign up</a>!</p>
+            <p>Already have a user account? Click here to <a href="sign-in.html">sign in</a>!</p>
         </div>
     )
 
