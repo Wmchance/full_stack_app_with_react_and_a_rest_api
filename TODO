@@ -1,2 +1,4 @@
 update HTML head info in client/public/index.html
 Make actual link for 'Sign In' Header component
+Add delete functionality for delete button in the CourseDetail component
+Add action to signup form
