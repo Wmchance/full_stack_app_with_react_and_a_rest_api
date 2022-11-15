@@ -1,8 +1,10 @@
-import React, {useState, useEffect} from "react";
+import React, { useState } from "react";
 import { useNavigate } from 'react-router-dom';
+
 
 const UserSignUp = () => {
 
+    const url = 'http://localhost:5000/api/users';
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
     const [formBody, updateFormInfo] = useState({
         firstName: '',
@@ -11,15 +13,66 @@ const UserSignUp = () => {
         password: ''
     })
 
-    // const formData = new FormData(document.getElementById('signupForm'));
+    // const createUser = () => {
+    //     fetch(url, {
+    //         method: "POST",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //           },
+    //         body: JSON.stringify(formBody)
+    //     })
+    //     .then(response => response.json())
+    //     .then(json => console.log(json))
+    //     .catch((error) => {
+    //         console.error('Error:', error);
+    //     });
+    // }
+
+    const createUser = () => {
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+              },
+            body: JSON.stringify(formBody)
+        })
+        .then(response => {
+            if(response & response != null) {
+                response.json()
+            }
+        })
+        .then(json => {
+            if(json) {
+                console.log(json)
+            }
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    }
+
+    // const createUser = async(req, res) => {
+    //     try{
+    //         await fetch(url, {
+    //             method: "POST",
+    //             headers: {
+    //                 "Content-Type": "application/json",
+    //             },
+    //             body: JSON.stringify(formBody)
+    //         })
+            
+    //     } catch (error) {
+    //         console.error('Error:', error);
+    //     }
+    // }
 
     return (
         <div  className="form--centered">
             <h2>Sign Up</h2>
 
             <form 
-                id="signupForm"
                 onSubmit={(e) => {
+                    createUser()
                     e.preventDefault()
                     console.log(formBody)
                 }}
