@@ -8,11 +8,11 @@ const Header = () =>{
                 <nav>
                     <ul className="header--signedout">
                         <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="sign-in.html">Sign In</a></li> {/* TODO: Make actual link */}
+                        <li><a href="/signin">Sign In</a></li>
                     </ul>
                     <ul className="header--signedin">
                         <li>Welcome, Joe Smith!</li>
-                        <li><a href="sign-out.html">Sign Out</a></li>
+                        <li><a href="sign-out.html">Sign Out</a></li> {/* TODO: make live link */}
                     </ul>
                 </nav>
             </div>

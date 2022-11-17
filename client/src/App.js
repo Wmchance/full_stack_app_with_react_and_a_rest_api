@@ -34,6 +34,11 @@ function App() {
         />
 
         <Route
+          path="/signin"
+          element={<UserSignIn />}
+        />
+
+        <Route
           path="/create-course"
           element={<CreateCourse />}
         />
