@@ -1,18 +1,20 @@
 import React from "react";
+import { Link } from "react-router-dom";
+
 
 const Header = () =>{
     return (
         <header>
             <div className="wrap header--flex">
-                <h1 className="header--logo"><a href="/">Courses</a></h1>
+                <h1 className="header--logo"><Link to="/">Courses</Link></h1>
                 <nav>
                     <ul className="header--signedout">
-                        <li><a href="/signup">Sign Up</a></li>
-                        <li><a href="/signin">Sign In</a></li>
+                        <li><Link to="/signup">Sign Up</Link></li>
+                        <li><Link to="/signin">Sign In</Link></li>
                     </ul>
                     <ul className="header--signedin">
                         <li>Welcome, Joe Smith!</li>
-                        <li><a href="sign-out.html">Sign Out</a></li> {/* TODO: make live link */}
+                        <li><Link to="sign-out.html">Sign Out</Link></li> {/* TODO: make live link */}
                     </ul>
                 </nav>
             </div>

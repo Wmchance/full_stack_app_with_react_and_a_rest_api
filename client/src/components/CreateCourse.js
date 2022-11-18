@@ -1,12 +1,18 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
+import { AuthConsumer } from "./Context";
 
 const CreateCourse = () => {
 
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
 
     return (
-        <div  className="wrap">
+        <AuthConsumer>
+            { authContext => {
+                const authUser = authContext.firstName;
+
+                return(
+                    <div  className="wrap">
             <h2>Create Course</h2>
 
             <div className="validation--errors">
@@ -23,7 +29,7 @@ const CreateCourse = () => {
                         <label htmlFor="courseTitle">Course Title</label>
                         <input id="courseTitle" name="courseTitle" type="text" defaultValue=""/>
 
-                        <p>By Joe Smith</p>
+                        <p>By {authUser}</p>
 
                         <label htmlFor="courseDescription">Course Description</label>
                         <textarea id="courseDescription" name="courseDescription"></textarea>
@@ -48,8 +54,11 @@ const CreateCourse = () => {
                 </button>
             </form>
 
-            <p>Don't have a user account? Click here to <a href="/signup">sign up</a>!</p>
+            <p>Don't have a user account? Click here to <Link to="/signup">sign up</Link>!</p>
         </div>
+                );
+            }}
+        </AuthConsumer>
     )
 
 }

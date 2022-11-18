@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 const UserSignIn = () => {
 
@@ -27,7 +27,7 @@ const UserSignIn = () => {
                 </button>
             </form>
 
-            <p>Don't have a user account? Click here to <a href="/signup">sign up</a>!</p>
+            <p>Don't have a user account? Click here to <Link to="/signup">sign up</Link>!</p>
         </div>
     )
 

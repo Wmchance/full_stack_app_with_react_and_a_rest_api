@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'; //https://www.npmjs.com/package/react-markdown
 
 const CourseDetails = () => {
@@ -33,9 +33,9 @@ const CourseDetails = () => {
         <React.Fragment>
             <div className="actions--bar">
                 <div className="wrap">
-                    <a className="button" href={`/${courseInfo.id}/update`}>Update Course</a>
-                    <a className="button" href="delete.html">Delete Course</a>
-                    <a className="button button-secondary" href="/">Return to List</a>
+                    <Link className="button" to={`/${courseInfo.id}/update`}>Update Course</Link>
+                    <Link className="button" to="delete.html">Delete Course</Link> {/* create live link */}
+                    <Link className="button button-secondary" to="/">Return to List</Link>
                 </div>
             </div>
             <div className="wrap">

@@ -3,3 +3,4 @@ Make actual link for 'Sign In' Header component
 Add delete functionality for delete button in the CourseDetail component
 Add action to signup form
 refactor fetch/then to try/catch
+update all href to link

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from 'react-router-dom';
-import { useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const UpdateCourse = () => {
 
@@ -55,7 +54,7 @@ const UpdateCourse = () => {
                     </div>
                 </div>
 
-                <button type="submit" className="button">Update Course</button>
+                <button type="submit" className="button">Update Course</button> {/* Make live */}
                 <button 
                     className="button button-secondary" 
                     onClick={(e) => {
