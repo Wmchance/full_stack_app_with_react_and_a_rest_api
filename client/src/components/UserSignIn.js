@@ -14,6 +14,9 @@ const UserSignIn = ({liftUserInfo}) => {
 
     useEffect(() => {
         liftUserInfo(userId)
+        if(userId.firstName) {
+            navigate('/')
+        }
         // eslint-disable-next-line
     }, [userId])
 
@@ -27,7 +30,11 @@ const UserSignIn = ({liftUserInfo}) => {
         })
         .then(response => response.json())
         .then(data => {
-            updateUserId(data.user)
+            if(data.user) {
+                updateUserId(data.user);
+            } else {
+                console.log(data.message);
+            }
         })
         .catch((error) => {
             console.log('Error:', error);
