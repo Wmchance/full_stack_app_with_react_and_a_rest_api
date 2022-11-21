@@ -10,7 +10,7 @@ const Courses = () => {
         fetch(url)
         .then((res) => res.json())    
         .then((res) => {
-            updateInfo(res.courses)
+            updateInfo(res.courses);
         })
         .catch((error) => {
             console.error('Error:', error);

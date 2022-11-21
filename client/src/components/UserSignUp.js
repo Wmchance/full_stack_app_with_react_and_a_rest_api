@@ -13,21 +13,6 @@ const UserSignUp = ({liftUserInfo}) => {
         password: ''
     })
 
-    // const createUser = () => {
-    //     fetch(url, {
-    //         method: "POST",
-    //         headers: {
-    //             "Content-Type": "application/json",
-    //           },
-    //         body: JSON.stringify(formBody)
-    //     })
-    //     .then(response => response.json())
-    //     .then(json => console.log(json))
-    //     .catch((error) => {
-    //         console.error('Error:', error);
-    //     });
-    // }
-
     const createUser = () => {
         fetch(url, {
             method: "POST",
@@ -36,35 +21,12 @@ const UserSignUp = ({liftUserInfo}) => {
               },
             body: JSON.stringify(formBody)
         })
-        .then(response => {
-            if(response & response != null) {
-                response.json()
-            }
-        })
-        .then(json => {
-            if(json) {
-                console.log(json)
-            }
-        })
+        .then(response => response.json())
+        .then(data => console.log(data))
         .catch((error) => {
-            console.error('Error:', error);
+            console.log('Error:', error);
         });
     }
-
-    // const createUser = async(req, res) => {
-    //     try{
-    //         await fetch(url, {
-    //             method: "POST",
-    //             headers: {
-    //                 "Content-Type": "application/json",
-    //             },
-    //             body: JSON.stringify(formBody)
-    //         })
-            
-    //     } catch (error) {
-    //         console.error('Error:', error);
-    //     }
-    // }
 
     return (
         <div  className="form--centered">
@@ -74,7 +36,6 @@ const UserSignUp = ({liftUserInfo}) => {
                 onSubmit={(e) => {
                     createUser()
                     e.preventDefault()
-                    console.log(formBody)
                     liftUserInfo(e, formBody)
                 }}
             >
