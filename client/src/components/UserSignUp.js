@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 
 
-const UserSignUp = ({liftUserInfo}) => {
+const UserSignUp = () => {
 
     const url = 'http://localhost:5000/api/users';
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
@@ -36,7 +36,6 @@ const UserSignUp = ({liftUserInfo}) => {
                 onSubmit={(e) => {
                     createUser()
                     e.preventDefault()
-                    liftUserInfo(e, formBody)
                 }}
             >
                 <label htmlFor="firstName">First Name</label>

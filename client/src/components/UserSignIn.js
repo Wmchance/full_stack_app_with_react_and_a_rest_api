@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 
-const UserSignIn = () => {
+const UserSignIn = ({liftUserInfo}) => {
 
     const url = 'http://localhost:5000/api/users';
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
@@ -10,12 +10,12 @@ const UserSignIn = () => {
         password: ''
     })
 
-    const [userId, updateUserId] = useState({
-        emailAddress: '',
-        firstname: '',
-        id: '',
-        lastName: ''
-    })
+    const [userId, updateUserId] = useState({})
+
+    useEffect(() => {
+        liftUserInfo(userId)
+        // eslint-disable-next-line
+    }, [userId])
 
     const getUser = () => {
         fetch(url, {
@@ -40,8 +40,8 @@ const UserSignIn = () => {
 
             <form
                 onSubmit={(e) => {
-                    getUser()
                     e.preventDefault()
+                    getUser()
                 }}
             >
                 <label htmlFor="emailAddress">Email Address</label>

@@ -19,8 +19,8 @@ function App() {
   const [userInfo, updateUserInfo] = useState({}); //Store user info from UserSignUp
 
   //Function to lift user info values from UserSignUp component 
-  const liftUserInfo = (e, userInfo) => {
-    e.preventDefault();
+  const liftUserInfo = (userInfo) => {
+    // e.preventDefault();
     updateUserInfo(userInfo);
   }
 
@@ -43,14 +43,14 @@ function App() {
 
               <Route
                 path="/signup"
-                element={<UserSignUp 
-                  liftUserInfo = {liftUserInfo}
-                />}
+                element={<UserSignUp />}
               />
 
               <Route
                 path="/signin"
-                element={<UserSignIn />}
+                element={<UserSignIn 
+                  liftUserInfo = {liftUserInfo}
+                />}
               />
 
               <Route
