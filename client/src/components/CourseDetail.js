@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useLocation, Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'; //https://www.npmjs.com/package/react-markdown
+import { AuthConsumer } from "./Context";
 
 const CourseDetails = () => {
     
@@ -33,8 +34,19 @@ const CourseDetails = () => {
         <React.Fragment>
             <div className="actions--bar">
                 <div className="wrap">
-                    <Link className="button" to={`/${courseInfo.id}/update`}>Update Course</Link>
-                    <Link className="button" to="delete.html">Delete Course</Link> {/* create live link */}
+                    <AuthConsumer>
+                        { context => {
+                            if(context.id && context.id === courseInfo.userId) {
+                                return (
+                                    <React.Fragment>
+                                        <Link className="button" to={`/${courseInfo.id}/update`}>Update Course</Link>
+                                        <Link className="button" to="delete.html">Delete Course</Link> {/* create live link */}
+                                    </React.Fragment>
+                                );
+                            }
+                        }}
+                    </AuthConsumer>
+                    
                     <Link className="button button-secondary" to="/">Return to List</Link>
                 </div>
             </div>
