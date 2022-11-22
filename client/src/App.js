@@ -6,6 +6,7 @@ import {
 } from "react-router-dom";
 
 import { AuthProvider } from "./components/Context";
+import PrivateRoute from "./PrivateRoute";
 
 import Courses from './components/Courses';
 import CourseDetails from './components/CourseDetail';
@@ -14,6 +15,7 @@ import UserSignUp from './components/UserSignUp';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 import Header from './components/Header';
+import Authenticated from "./components/Authenticated";
 
 function App() {
   const [userInfo, updateUserInfo] = useState({}); //Store user info from UserSignUp
@@ -62,6 +64,18 @@ function App() {
                 path="/:id/update"
                 element={<UpdateCourse />}
               />
+              
+              {/* https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5
+              This link shows how to migrate from PrivateRoutes in React Router V.4 to PrivateRoutes in V.6 */}
+              <Route
+                path="/authenticated"
+                element={
+                  <PrivateRoute>
+                    <Authenticated />
+                  </PrivateRoute>
+                }
+              />
+
             </Routes>
           </main>
       </BrowserRouter>

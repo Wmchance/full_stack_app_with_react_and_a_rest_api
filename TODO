@@ -4,3 +4,5 @@ Add delete functionality for delete button in the CourseDetail component
 Add action to signup form
 refactor fetch/then to try/catch
 use redirect for conditional movements based on api calls
+create signOut method
+change signIn page so that users aren't auto logged-out by clicking the back button and returning to the page
