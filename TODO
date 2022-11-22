@@ -1,8 +1,9 @@
 update HTML head info in client/public/index.html
 Make actual link for 'Sign In' Header component
 Add delete functionality for delete button in the CourseDetail component
-Add action to signup form
+Add action to signUp form
 refactor fetch/then to try/catch
 use redirect for conditional movements based on api calls
 create signOut method
 change signIn page so that users aren't auto logged-out by clicking the back button and returning to the page
+look at how Authorization header info is being pulled from AuthConsumer

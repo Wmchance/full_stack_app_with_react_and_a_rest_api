@@ -19,6 +19,8 @@ const CreateCourse = () => {
         password: ''
     })
 
+    const [valErrors, updateErrors] = useState([])
+
     const createCourse = () => {
         fetch(url, {
             method: "POST",
@@ -29,7 +31,10 @@ const CreateCourse = () => {
             body: JSON.stringify(formBody)
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data.errors);
+            updateErrors(data.errors);
+        })
         .catch((error) => {
             console.log('Error:', error);
         });
@@ -46,14 +51,21 @@ const CreateCourse = () => {
                 return(
                     <div  className="wrap">
                         <h2>Create Course</h2>
-
-                        <div className="validation--errors">
-                            <h3>Validation Errors</h3>
-                            <ul>
-                                <li>Please provide a value for "Title"</li>
-                                <li>Please provide a value for "Description"</li>
-                            </ul>
-                        </div>
+                        
+                        <>
+                            {valErrors.length > 0 &&
+                                <div className="validation--errors">
+                                    <h3>Validation Errors</h3>
+                                    <ul>
+                                        {valErrors.map((error, i) => {
+                                            return(
+                                            <li key={i}>{error}</li>
+                                            )
+                                        })}
+                                    </ul>
+                                </div>
+                            }
+                        </>
 
                         <form
                             onSubmit={(e) => {
