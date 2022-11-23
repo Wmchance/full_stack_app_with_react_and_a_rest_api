@@ -23,10 +23,19 @@ const UserSignUp = () => {
               },
             body: JSON.stringify(formBody)
         })
-        .then(response => response.json())
+        .then(res => {
+            console.log(res.status);
+            if(res.status  === 201) {
+                navigate('/');
+            } else {
+                return res.json();
+            }
+        })
         .then(data => {
-            console.log(data.errors);
-            updateErrors(data.errors);
+            if(data) {
+                console.log(data.errors);
+                updateErrors(data.errors);
+            }
         })
         .catch((error) => {
             console.log('Error:', error);

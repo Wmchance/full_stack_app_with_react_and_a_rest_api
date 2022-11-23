@@ -11,3 +11,4 @@ update put route in previous project
 Why does deleting all info in one go not update the state (works when going 1-by-1)
 check 'navigate' after successes 
 check for 'console.log' in all files
+add userSignIn from userSignUp
