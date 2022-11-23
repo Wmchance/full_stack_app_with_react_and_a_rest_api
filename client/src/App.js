@@ -64,7 +64,7 @@ function App() {
               />
 
               <Route
-                path="/create-course"
+                path="/create"
                 element={
                   <PrivateRoute>
                     <CreateCourse />
