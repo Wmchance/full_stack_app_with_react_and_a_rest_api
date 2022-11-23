@@ -13,3 +13,4 @@ check 'navigate' after successes
 check for 'console.log' in all files
 add userSignIn from userSignUp
 onChange in updateCourse doesn't work when deleting a single letter input
+after creating a course, send user to the courseDetails page for the newly created course (not needed from instructions?!?)

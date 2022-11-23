@@ -46,7 +46,9 @@ function App() {
 
               <Route
                 path="/signup"
-                element={<UserSignUp />}
+                element={<UserSignUp 
+                  liftUserInfo = {liftUserInfo}
+                />}
               />
 
               <Route
