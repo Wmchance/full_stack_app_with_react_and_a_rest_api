@@ -10,7 +10,9 @@ const UpdateCourse = () => {
     const [courseId, updateId] = useState(location.pathname.split("/")[1]);
     const url = `http://localhost:5000/api/courses/${courseId}`;
 
-    // Load current course data from db so that it can be displayed 
+    /*
+     * Load current course data from db so that it can be displayed 
+    */
     const [courseInfo, updateInfo] = useState([]);
 
     const getCourse = () => {
@@ -39,7 +41,9 @@ const UpdateCourse = () => {
       }, [location.pathname]
     ) 
 
-    //Update course info & make PUT request to db
+    /*
+     * Update course info & make PUT request to db
+    */
     const [formBody, updateFormInfo] = useState({})
 
     const [authUser, updateUser] = useState({
@@ -58,11 +62,20 @@ const UpdateCourse = () => {
               },
             body: JSON.stringify(formBody)
         })
-        .then(response => response.json())
+        .then(res => {
+            console.log(res.status);
+            if(res.status === 204) {
+                navigate('/');
+            } else {
+                return res.json();
+            }
+        })
         .then(data => {
-            console.log(data);
-            console.log(data.errors);
-            updateErrors(data.errors);
+            if(data) {
+                console.log(data);
+                console.log(data.errors);
+                updateErrors(data.errors);
+            }
         })
         .catch((error) => {
             console.log('Error:', error);
