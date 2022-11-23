@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation, Link } from 'react-router-dom';
+import { useLocation, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'; //https://www.npmjs.com/package/react-markdown
 import { AuthConsumer } from "./Context";
 
@@ -30,17 +30,51 @@ const CourseDetails = () => {
       }, [location.pathname]
     ) 
 
+    const navigate = useNavigate();
+
+    const [authUser, updateUser] = useState({
+        emailAddress: '',
+        password: ''
+    })
+
+    const deleteCourse = () => {
+        fetch(url, {
+            method: "DELETE",
+            headers: {
+                "Content-type": "application/json",
+                "Authorization": 'Basic ' + btoa(`${authUser.emailAddress}:${authUser.password}`)
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            console.log(data.errors);
+        })
+        .catch((error) => {
+            console.log('Error:', error);
+        });
+    }
+
     return (
         <React.Fragment>
             <div className="actions--bar">
                 <div className="wrap">
                     <AuthConsumer>
                         { context => {
+                            authUser.emailAddress = context.emailAddress;
+                            authUser.password = context.password;
+
                             if(context.id && context.id === courseInfo.userId) {
                                 return (
                                     <React.Fragment>
                                         <Link className="button" to={`/${courseInfo.id}/update`}>Update Course</Link>
-                                        <Link className="button" to="delete.html">Delete Course</Link> {/* create live link */}
+                                        <button className="button"
+                                            onClick={(e) => {
+                                                e.preventDefault()
+                                                deleteCourse()
+                                                navigate('/')
+                                            }}
+                                        >Delete Course</button> {/* create live link */}
                                     </React.Fragment>
                                 );
                             }

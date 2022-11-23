@@ -19,7 +19,7 @@ const Courses = () => {
 
     useEffect(() => {
         getCourses()
-      }, []) 
+      }, [coursesInfo]) 
 
     return (
         <div className="wrap main--grid">
