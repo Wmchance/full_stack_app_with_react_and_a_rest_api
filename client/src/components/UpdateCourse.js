@@ -11,12 +11,17 @@ const UpdateCourse = () => {
     const url = `http://localhost:5000/api/courses/${courseId}`;
 
     const [courseInfo, updateInfo] = useState([]);
+    const [valErrors, updateErrors] = useState([]);
 
     const getCourse = () => {
         fetch(url)
         .then((res) => res.json())    
         .then((res) => {
             updateInfo(res.course)
+        })
+        .then(data => {
+            console.log(data.errors);
+            updateErrors(data.errors);
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -33,6 +38,21 @@ const UpdateCourse = () => {
     return (
         <div  className="wrap">
             <h2>Update Course</h2>
+
+            <>
+                {valErrors.length > 0 &&
+                    <div className="validation--errors">
+                        <h3>Validation Errors</h3>
+                        <ul>
+                            {valErrors.map((error, i) => {
+                                return(
+                                <li key={i}>{error}</li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                }
+            </>
 
             <form>
                 <div className="main--flex">

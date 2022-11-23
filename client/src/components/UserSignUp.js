@@ -13,6 +13,8 @@ const UserSignUp = () => {
         password: ''
     })
 
+    const [valErrors, updateErrors] = useState([])
+
     const createUser = () => {
         fetch(url, {
             method: "POST",
@@ -22,15 +24,34 @@ const UserSignUp = () => {
             body: JSON.stringify(formBody)
         })
         .then(response => response.json())
-        .then(data => console.log(data))
+        .then(data => {
+            console.log(data.errors);
+            updateErrors(data.errors);
+        })
         .catch((error) => {
             console.log('Error:', error);
         });
     }
+    
 
-    return (
+    return (  
         <div  className="form--centered">
             <h2>Sign Up</h2>
+
+            <>
+                {valErrors.length > 0 &&
+                    <div className="validation--errors">
+                        <h3>Validation Errors</h3>
+                        <ul>
+                            {valErrors.map((error, i) => {
+                                return(
+                                <li key={i}>{error}</li>
+                                )
+                            })}
+                        </ul>
+                    </div>
+                }
+            </>
 
             <form 
                 onSubmit={(e) => {
