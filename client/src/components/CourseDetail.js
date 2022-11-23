@@ -45,10 +45,18 @@ const CourseDetails = () => {
                 "Authorization": 'Basic ' + btoa(`${authUser.emailAddress}:${authUser.password}`)
             }
         })
-        .then(response => response.json())
+        .then(res => {
+            if(res.status === 204) {
+                navigate('/');
+            } else {
+                res.json();
+            }
+        })
         .then(data => {
-            console.log(data);
-            console.log(data.errors);
+            if(data) {
+                console.log(data);
+                console.log(data.errors);
+            }
         })
         .catch((error) => {
             console.log('Error:', error);
@@ -72,7 +80,6 @@ const CourseDetails = () => {
                                             onClick={(e) => {
                                                 e.preventDefault()
                                                 deleteCourse()
-                                                navigate('/')
                                             }}
                                         >Delete Course</button> {/* create live link */}
                                     </React.Fragment>
