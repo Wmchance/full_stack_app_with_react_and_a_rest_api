@@ -83,8 +83,10 @@ router.put('/:id', authenticateUser, asyncHandler(async (req ,res) => {
         try {
           course.title = req.body.title;
           course.description = req.body.description;
+          course.estimatedTime = req.body.estimatedTime;
+          course.materialsNeeded = req.body.materialsNeeded;
           await course.save({
-            fields: ['title', 'description']
+            fields: ['title', 'description', 'estimatedTime', 'materialsNeeded']
           });
           res.status(204).end();
         } catch (error) {

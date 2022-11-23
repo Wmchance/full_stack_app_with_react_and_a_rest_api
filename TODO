@@ -7,3 +7,6 @@ use redirect for conditional movements based on api calls
 create signOut method
 change signIn page so that users aren't auto logged-out by clicking the back button and returning to the page
 look at how Authorization header info is being pulled from AuthConsumer
+Do I need to use state for the course id in UpdateCourse or for authUser info anywhere?
+Error: SyntaxError: Unexpected end of JSON input - check all fetch requests
+update put route in previous project
