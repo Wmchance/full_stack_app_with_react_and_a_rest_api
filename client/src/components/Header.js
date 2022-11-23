@@ -16,7 +16,7 @@ const Header = () =>{
                             return (
                                 <ul className="header--signedin">
                                     <li>Welcome, {context.firstName} {context.lastName}!</li>
-                                    <li><Link to="sign-out.html">Sign Out</Link></li> {/* TODO: make live link */}
+                                    <li><Link to="/signout">Sign Out</Link></li>
                                 </ul>
                             );
                         } else {

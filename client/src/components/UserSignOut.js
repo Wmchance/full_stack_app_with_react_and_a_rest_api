@@ -1,12 +1,12 @@
-import React from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const UserSignOut = () => {
+const UserSignOut = ({liftUserInfo}) => {
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
-
-    return (
+    useEffect(() => {
+        liftUserInfo([])
         navigate("/")
-    )
+    }, [])
 }
 
 export default UserSignOut;

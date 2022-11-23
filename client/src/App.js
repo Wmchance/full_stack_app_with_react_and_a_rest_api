@@ -15,6 +15,7 @@ import UserSignUp from './components/UserSignUp';
 import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 import Header from './components/Header';
+import UserSignOut from "./components/UserSignOut";
 // import Authenticated from "./components/Authenticated";
 
 function App() {
@@ -51,6 +52,13 @@ function App() {
               <Route
                 path="/signin"
                 element={<UserSignIn 
+                  liftUserInfo = {liftUserInfo}
+                />}
+              />
+
+              <Route
+                path="/signout"
+                element={<UserSignOut 
                   liftUserInfo = {liftUserInfo}
                 />}
               />

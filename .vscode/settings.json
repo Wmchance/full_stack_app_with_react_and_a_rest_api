@@ -4,6 +4,7 @@
         "signedin",
         "signedout",
         "signin",
+        "signout",
         "Treehouse"
     ]
 }
