@@ -32,10 +32,10 @@ const CreateCourse = () => {
         })
         .then(response => {
             console.log(response.status);
-            if(response.status !== 201) {
-                return response.json();
-            } else {
+            if(response.status === 201) {
                 navigate('/');
+            } else {
+                return response.json();
             }
         })
         .then(data => {
