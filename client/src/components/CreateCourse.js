@@ -30,10 +30,20 @@ const CreateCourse = () => {
               },
             body: JSON.stringify(formBody)
         })
-        .then(response => response.json())
+        .then(response => {
+            console.log(response.status);
+            if(response.status !== 201) {
+                return response.json();
+            } else {
+                navigate('/');
+            }
+        })
         .then(data => {
-            console.log(data.errors);
-            updateErrors(data.errors);
+            if(data) {
+                console.log(data.errors);
+                console.log(data.errors.length);
+                updateErrors(data.errors);
+            }
         })
         .catch((error) => {
             console.log('Error:', error);
