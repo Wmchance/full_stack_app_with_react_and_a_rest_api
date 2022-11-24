@@ -16,6 +16,7 @@ import CreateCourse from './components/CreateCourse';
 import UpdateCourse from './components/UpdateCourse';
 import Header from './components/Header';
 import UserSignOut from "./components/UserSignOut";
+import NotFound from "./components/NotFound";
 // import Authenticated from "./components/Authenticated";
 
 function App() {
@@ -81,6 +82,16 @@ function App() {
                 element={<UserSignOut 
                   liftUserInfo = {liftUserInfo}
                 />}
+              />
+
+              <Route
+                path="/notfound"
+                element={<NotFound />}
+              />
+
+              <Route 
+                path="*" 
+                element={<NotFound />}
               />
               
               {/* https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5 */}

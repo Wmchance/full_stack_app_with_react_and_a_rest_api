@@ -17,16 +17,22 @@ const UpdateCourse = () => {
 
     const getCourse = () => {
         fetch(url)
-        .then((res) => res.json())    
         .then((res) => {
-            updateInfo(res.course);
+            if(res.status === 404) {
+                navigate('notfound');
+            } else {
+                return res.json();
+            }
+        })    
+        .then((data) => {
+            updateInfo(data.course);
             updateFormInfo({
-                id: res.course.id,
-                title: res.course.title,
-                description: res.course.description,
-                userId: res.course.userId,
-                estimatedTime: res.course.estimatedTime,
-                materialsNeeded: res.course.materialsNeeded
+                id: data.course.id,
+                title: data.course.title,
+                description: data.course.description,
+                userId: data.course.userId,
+                estimatedTime: data.course.estimatedTime,
+                materialsNeeded: data.course.materialsNeeded
             });
         })
         .catch((error) => {

@@ -5,6 +5,7 @@ import { AuthConsumer } from "./Context";
 
 const CourseDetails = () => {
     
+    const navigate = useNavigate();
     const location = useLocation(); //React hook to grab data about the location of the current page
     const [courseId, updateId] = useState(location.pathname);
 
@@ -14,9 +15,17 @@ const CourseDetails = () => {
 
     const getCourse = () => {
         fetch(url)
-        .then((res) => res.json())    
         .then((res) => {
-            updateInfo(res.course)
+            if(res.status === 404) {
+                navigate('/notfound')
+            } else {
+                return res.json();
+            }
+        })    
+        .then((data) => {
+            if(data) {
+                updateInfo(data.course)
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -29,8 +38,6 @@ const CourseDetails = () => {
         // eslint-disable-next-line
       }, [location.pathname]
     ) 
-
-    const navigate = useNavigate();
 
     const [authUser, updateUser] = useState({
         emailAddress: '',
