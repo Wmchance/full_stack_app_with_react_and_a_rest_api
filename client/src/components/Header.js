@@ -12,7 +12,7 @@ const Header = () =>{
                 <nav>
                 <AuthConsumer>
                     { context => {
-                        if(context.id && context.id !==0) {
+                        if(context.emailAddress && context.emailAddress !== 'undefined') {
                             return (
                                 <ul className="header--signedin">
                                     <li>Welcome, {context.firstName} {context.lastName}!</li>

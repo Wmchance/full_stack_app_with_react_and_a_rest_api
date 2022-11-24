@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { 
   BrowserRouter,
   Routes,
@@ -23,11 +23,30 @@ import UnhandledError from "./components/UnhandledError";
 function App() {
   const [userInfo, updateUserInfo] = useState({}); //Store user info from UserSignUp
 
-  //Function to lift user info values from UserSignUp component 
+  //Function to lift user info values from components
   const liftUserInfo = (userInfo) => {
     // e.preventDefault();
     updateUserInfo(userInfo);
+    //Set local storage for user info
+    localStorage.setItem('emailAddress', userInfo.emailAddress);
+    localStorage.setItem('password', userInfo.password);
+    localStorage.setItem('firstName', userInfo.firstName);
+    localStorage.setItem('lastName', userInfo.lastName);
+    localStorage.setItem('id', userInfo.id);
   }
+
+  //Stay signed in with LocalStorage if available
+  useEffect(() => {
+    if(localStorage.emailAddress !== 'undefined') {
+      updateUserInfo({
+        emailAddress: localStorage.emailAddress,
+        password: localStorage.password,
+        firstName: localStorage.firstName,
+        lastName: localStorage.lastName,
+        id: +localStorage.id
+      })
+    }
+  }, [])
 
   return (
     <div id="root">
