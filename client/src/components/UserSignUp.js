@@ -38,6 +38,8 @@ const UserSignUp = ({liftUserInfo}) => {
             console.log(res.status);
             if(res.status  === 201) {
                 getUser();
+            } else if(res.status === 500) {
+                navigate('/error')
             } else {
                 return res.json();
             }
@@ -62,7 +64,13 @@ const UserSignUp = ({liftUserInfo}) => {
                 "Authorization": 'Basic ' + btoa(`${formBody.emailAddress}:${formBody.password}`)
             }
         })
-        .then(res => res.json())
+        .then(res => {
+            if(res.status === 500) {
+                navigate('/error');
+            } else {
+                return res.json();
+            }
+        })
         .then(data => {
             if(data.user) {
                 updateUserId(data.user);

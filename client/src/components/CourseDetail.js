@@ -18,6 +18,8 @@ const CourseDetails = () => {
         .then((res) => {
             if(res.status === 404) {
                 navigate('/notfound')
+            } else if(res.status === 500) {
+                navigate('/error');
             } else {
                 return res.json();
             }

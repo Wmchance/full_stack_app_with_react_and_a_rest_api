@@ -26,13 +26,15 @@ const UpdateCourse = () => {
         .then((res) => {
             if(res.status === 404) {
                 navigate('notfound');
+            } else if(res.status === 500) {
+                navigate('/error');
             } else {
                 return res.json();
             }
         })    
         .then((data) => {
-            if(data.course.id !== authUser.id) {
-                navigate('forbidden');
+            if(data.course.userId !== authUser.id) {
+                navigate('/forbidden');
             } else {
                 updateInfo(data.course);
                 updateFormInfo({
@@ -82,6 +84,8 @@ const UpdateCourse = () => {
             console.log(res.status);
             if(res.status === 204) {
                 navigate('/');
+            } else if(res.status === 500) {
+                navigate('/error');
             } else {
                 return res.json();
             }

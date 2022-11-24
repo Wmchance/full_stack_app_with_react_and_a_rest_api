@@ -14,3 +14,4 @@ check for 'console.log' in all files
 onChange in updateCourse doesn't work when deleting a single letter input
 after creating a course, send user to the courseDetails page for the newly created course (not needed from instructions?!?)
 CreateCourse, UpdateCourse, & CourseDetail need to have a base url of /courses/...
+check error message with incorrect signIn info: UserSignIn

@@ -18,6 +18,7 @@ import Header from './components/Header';
 import UserSignOut from "./components/UserSignOut";
 import NotFound from "./components/NotFound";
 import Forbidden from "./components/Forbidden";
+import UnhandledError from "./components/UnhandledError";
 
 function App() {
   const [userInfo, updateUserInfo] = useState({}); //Store user info from UserSignUp
@@ -94,6 +95,11 @@ function App() {
               <Route
                 path="/forbidden"
                 element={<Forbidden />}
+              />
+
+              <Route
+                path="/error"
+                element={<UnhandledError />}
               />
 
               <Route 

@@ -1,14 +1,21 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Courses = () => {
     
+    const navigate = useNavigate();
     const url = 'http://localhost:5000/api/courses';
     const [coursesInfo, updateInfo] = useState([]);
 
     const getCourses = () => {
         fetch(url)
-        .then((res) => res.json())    
+        .then((res) => {
+            if(res.status === 500) {
+                navigate('/error');
+            } else {
+                return res.json();
+            }
+        })    
         .then((res) => {
             updateInfo(res.courses);
         })
