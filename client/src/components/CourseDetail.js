@@ -49,7 +49,7 @@ const CourseDetails = () => {
             if(res.status === 204) {
                 navigate('/');
             } else {
-                res.json();
+                return res.json();
             }
         })
         .then(data => {
