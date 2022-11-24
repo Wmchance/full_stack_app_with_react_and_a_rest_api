@@ -18,7 +18,6 @@ import Header from './components/Header';
 import UserSignOut from "./components/UserSignOut";
 import NotFound from "./components/NotFound";
 import Forbidden from "./components/Forbidden";
-// import Authenticated from "./components/Authenticated";
 
 function App() {
   const [userInfo, updateUserInfo] = useState({}); //Store user info from UserSignUp
@@ -46,6 +45,8 @@ function App() {
                 element={<CourseDetails />}
               />
               
+              {/* https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5 */}
+              {/* This link shows how to migrate from PrivateRoutes in React Router V.4 to PrivateRoutes in V.6 */}
               <Route
                 path="courses/create"
                 element={
@@ -99,18 +100,6 @@ function App() {
                 path="*" 
                 element={<NotFound />}
               />
-              
-              {/* https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5 */}
-              {/* This link shows how to migrate from PrivateRoutes in React Router V.4 to PrivateRoutes in V.6 */}
-              {/* Below is an example to test that it's working */}
-              {/* <Route
-                path="/authenticated"
-                element={
-                  <PrivateRoute>
-                    <Authenticated />
-                  </PrivateRoute>
-                }
-              /> */}
 
             </Routes>
           </main>
