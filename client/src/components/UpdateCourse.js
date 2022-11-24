@@ -10,8 +10,14 @@ const UpdateCourse = () => {
     const [courseId, updateId] = useState(location.pathname.split('/')[2]);
     const url = `http://localhost:5000/api/courses/${courseId}`;
 
+    const [authUser, updateUser] = useState({
+        emailAddress: '',
+        password: '',
+        id: ''
+    })
+
     /*
-     * Load current course data from db so that it can be displayed 
+    ** Load current course data from db so that it can be displayed 
     */
     const [courseInfo, updateInfo] = useState([]);
 
@@ -25,15 +31,19 @@ const UpdateCourse = () => {
             }
         })    
         .then((data) => {
-            updateInfo(data.course);
-            updateFormInfo({
-                id: data.course.id,
-                title: data.course.title,
-                description: data.course.description,
-                userId: data.course.userId,
-                estimatedTime: data.course.estimatedTime,
-                materialsNeeded: data.course.materialsNeeded
-            });
+            if(data.course.id !== authUser.id) {
+                navigate('forbidden');
+            } else {
+                updateInfo(data.course);
+                updateFormInfo({
+                    id: data.course.id,
+                    title: data.course.title,
+                    description: data.course.description,
+                    userId: data.course.userId,
+                    estimatedTime: data.course.estimatedTime,
+                    materialsNeeded: data.course.materialsNeeded
+                });
+            }
         })
         .catch((error) => {
             console.error('Error:', error);
@@ -52,10 +62,10 @@ const UpdateCourse = () => {
     */
     const [formBody, updateFormInfo] = useState({})
 
-    const [authUser, updateUser] = useState({
-        emailAddress: '',
-        password: ''
-    })
+    // const [authUser, updateUser] = useState({
+    //     emailAddress: '',
+    //     password: ''
+    // })
 
     const [valErrors, updateErrors] = useState([])
     
@@ -93,6 +103,7 @@ const UpdateCourse = () => {
             { context => {
                 authUser.emailAddress = context.emailAddress;
                 authUser.password = context.password;
+                authUser.id = context.id;
 
                 return(
                     <div  className="wrap">

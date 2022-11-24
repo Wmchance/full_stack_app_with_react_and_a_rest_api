@@ -17,6 +17,7 @@ import UpdateCourse from './components/UpdateCourse';
 import Header from './components/Header';
 import UserSignOut from "./components/UserSignOut";
 import NotFound from "./components/NotFound";
+import Forbidden from "./components/Forbidden";
 // import Authenticated from "./components/Authenticated";
 
 function App() {
@@ -87,6 +88,11 @@ function App() {
               <Route
                 path="/notfound"
                 element={<NotFound />}
+              />
+
+              <Route
+                path="/forbidden"
+                element={<Forbidden />}
               />
 
               <Route 
