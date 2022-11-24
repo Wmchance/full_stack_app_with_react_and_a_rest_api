@@ -7,7 +7,7 @@ const UpdateCourse = () => {
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
     const location = useLocation(); //React hook to grab data about the location of the current page
     
-    const [courseId, updateId] = useState(location.pathname.split("/")[1]);
+    const [courseId, updateId] = useState(location.pathname.split('/')[2]);
     const url = `http://localhost:5000/api/courses/${courseId}`;
 
     /*
@@ -35,7 +35,7 @@ const UpdateCourse = () => {
     }
 
     useEffect(() => {
-        updateId(location.pathname.split("/")[1]);
+        updateId(location.pathname.split('/')[2]);
         getCourse();
         // eslint-disable-next-line
       }, [location.pathname]

@@ -38,10 +38,28 @@ function App() {
                 path="/"
                 element={<Courses />}
               />
-        
+
               <Route 
-                path="/:id"
+                path="courses/:id"
                 element={<CourseDetails />}
+              />
+              
+              <Route
+                path="courses/create"
+                element={
+                  <PrivateRoute>
+                    <CreateCourse />
+                  </PrivateRoute>
+                }
+              />
+
+              <Route
+                path="courses/:id/update"
+                element={
+                  <PrivateRoute>
+                    <UpdateCourse />
+                  </PrivateRoute>
+                }
               />
 
               <Route
@@ -63,24 +81,6 @@ function App() {
                 element={<UserSignOut 
                   liftUserInfo = {liftUserInfo}
                 />}
-              />
-
-              <Route
-                path="/create"
-                element={
-                  <PrivateRoute>
-                    <CreateCourse />
-                  </PrivateRoute>
-                }
-              />
-
-              <Route
-                path="/:id/update"
-                element={
-                  <PrivateRoute>
-                    <UpdateCourse />
-                  </PrivateRoute>
-                }
               />
               
               {/* https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5 */}
