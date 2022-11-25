@@ -143,7 +143,7 @@ const UserSignUp = ({liftUserInfo}) => {
 
             </form>
 
-            <p>Already have a user account? Click here to <Link to="sign-in.html">sign in</Link>!</p>
+            <p>Already have a user account? Click here to <Link to="/signin">sign in</Link>!</p>
         </div>
     )
 

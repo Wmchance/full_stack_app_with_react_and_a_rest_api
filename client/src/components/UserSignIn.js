@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link, useLocation } from 'react-router-dom';
 
 const UserSignIn = ({liftUserInfo}) => {
 
     const url = 'http://localhost:5000/api/users';
-    const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
+    const navigate = useNavigate();
+    const location = useLocation();
+
+
     const [formBody, updateFormInfo] = useState({
         emailAddress: '',
         password: ''
@@ -12,10 +15,20 @@ const UserSignIn = ({liftUserInfo}) => {
 
     const [userId, updateUserId] = useState({})
 
+    const prevLocation = location.state?.prevLocation;
+
+    //Navigate to the previous page in history w/ state sent from the page that directed to the signIn page - https://reactrouter.com/en/v6.3.0/upgrading/v5#use-usenavigate-instead-of-usehistory
     useEffect(() => {
-        liftUserInfo(userId)
-        if(userId.firstName) {
-            navigate('/')
+        liftUserInfo(userId);
+        console.log(prevLocation);
+
+        const failPaths = ['/error', '/forbidden', '/notfound', '/signout', '/signin', '/signup'];
+        if(userId.id) {
+            if(!location.state || failPaths.includes(prevLocation)) {
+                navigate('/');
+            } else {
+                navigate(prevLocation);
+            }
         }
         // eslint-disable-next-line
     }, [userId])
@@ -43,7 +56,7 @@ const UserSignIn = ({liftUserInfo}) => {
                 updateUserId(prevState => ({...prevState, password: formBody.password}));
             } else {
                 console.log(data.message);
-            }
+            };
         })
         .catch((error) => {
             console.log('Error:', error);

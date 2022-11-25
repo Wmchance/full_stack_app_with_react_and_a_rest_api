@@ -1,13 +1,16 @@
 import React from 'react';
-import { Navigate } from 'react-router-dom';
+import { Navigate, useLocation } from 'react-router-dom';
 
 import { AuthConsumer } from './components/Context';
 
 const PrivateRoute = ({ children }) => {
+  
+  const location = useLocation();
+
   return (
     <AuthConsumer>
       { context => (
-        context.id ? children : <Navigate to="/signin" />
+        context.id ? children : <Navigate to="/signin" state={{ 'prevLocation': location.pathname }}/>
       )}
     </AuthConsumer>
   );

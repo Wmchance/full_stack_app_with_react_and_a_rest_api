@@ -1,10 +1,13 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 import { AuthConsumer } from "./Context";
 
 
 const Header = () =>{
+    
+    const location = useLocation();
+    
     return (
         <header>
             <div className="wrap header--flex">
@@ -23,7 +26,7 @@ const Header = () =>{
                             return (
                                 <ul className="header--signedout">
                                     <li><Link to="/signup">Sign Up</Link></li>
-                                    <li><Link to="/signin">Sign In</Link></li>
+                                    <li><Link to="/signin" state={{ 'prevLocation': location.pathname }}>Sign In</Link></li>
                                 </ul>
                             );
                         }
