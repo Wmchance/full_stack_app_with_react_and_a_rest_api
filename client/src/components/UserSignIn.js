@@ -55,8 +55,6 @@ const UserSignIn = ({liftUserInfo}) => {
             if(data) {
                 updateUserId(data.user);
                 updateUserId(prevState => ({...prevState, password: formBody.password}));
-            } else {
-                console.log(data.message);
             };
         })
         .catch((error) => {
