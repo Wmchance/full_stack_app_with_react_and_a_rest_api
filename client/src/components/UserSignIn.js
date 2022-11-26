@@ -52,7 +52,7 @@ const UserSignIn = ({liftUserInfo}) => {
             }
         })
         .then(data => {
-            if(data.user) {
+            if(data) {
                 updateUserId(data.user);
                 updateUserId(prevState => ({...prevState, password: formBody.password}));
             } else {
