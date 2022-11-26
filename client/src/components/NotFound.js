@@ -6,6 +6,7 @@ const NotFound = () => {
     const navigate = useNavigate();
     useEffect(() => {
         navigate('/notfound');
+        // eslint-disable-next-line
     }, [])
     
     return (

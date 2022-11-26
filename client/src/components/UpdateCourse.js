@@ -10,11 +10,11 @@ const UpdateCourse = () => {
     const [courseId, updateId] = useState(location.pathname.split('/')[2]);
     const url = `http://localhost:5000/api/courses/${courseId}`;
 
-    const [authUser, updateUser] = useState({
+    const authUser = {
         emailAddress: '',
         password: '',
         id: ''
-    })
+    }
 
     /*
     ** Load current course data from db so that it can be displayed 
@@ -63,11 +63,6 @@ const UpdateCourse = () => {
      * Update course info & make PUT request to db
     */
     const [formBody, updateFormInfo] = useState({})
-
-    // const [authUser, updateUser] = useState({
-    //     emailAddress: '',
-    //     password: ''
-    // })
 
     const [valErrors, updateErrors] = useState([])
     
@@ -161,7 +156,7 @@ const UpdateCourse = () => {
                                 </div>
                             </div>
 
-                            <button type="submit" className="button">Update Course</button> {/* Make live */}
+                            <button type="submit" className="button">Update Course</button>
                             <button 
                                 className="button button-secondary" 
                                 onClick={(e) => {
