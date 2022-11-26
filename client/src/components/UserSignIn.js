@@ -19,8 +19,9 @@ const UserSignIn = ({liftUserInfo}) => {
 
     //Navigate to the previous page in history w/ state sent from the page that directed to the signIn page - https://reactrouter.com/en/v6.3.0/upgrading/v5#use-usenavigate-instead-of-usehistory
     useEffect(() => {
-        liftUserInfo(userId);
-        console.log(prevLocation);
+        if(userId.id) {
+            liftUserInfo(userId);
+        }
 
         const failPaths = ['/error', '/forbidden', '/notfound', '/signout', '/signin', '/signup'];
         if(userId.id) {
