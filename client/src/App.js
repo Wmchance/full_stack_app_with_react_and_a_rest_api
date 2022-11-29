@@ -23,21 +23,25 @@ import UnhandledError from "./components/UnhandledError";
 function App() {
   const [userInfo, updateUserInfo] = useState({}); //Store user info from UserSignUp
 
-  //Function to lift user info values from components
-  const liftUserInfo = (userInfo) => {
-    // e.preventDefault();
+  //Global signIn() method constants
+  const userUrl = 'http://localhost:5000/api/users';
+  const [valErrorMsg, updateMsg] = useState([]);
+
+  //Global signOut() method
+  const signOut = (userInfo) => {
+    // Remove user info from global state
     updateUserInfo(userInfo);
-    //Set local storage for user info
-    localStorage.setItem('emailAddress', userInfo.emailAddress);
-    localStorage.setItem('password', userInfo.password);
-    localStorage.setItem('firstName', userInfo.firstName);
-    localStorage.setItem('lastName', userInfo.lastName);
-    localStorage.setItem('id', userInfo.id);
+    //remove user info from local storage
+    localStorage.setItem('emailAddress', '');
+    localStorage.setItem('password', '');
+    localStorage.setItem('firstName', '');
+    localStorage.setItem('lastName', '');
+    localStorage.setItem('id', '');
   }
 
   //Stay signed in with LocalStorage if available
   useEffect(() => {
-    if(localStorage.emailAddress !== 'undefined') {
+    if(localStorage.emailAddress) {
       updateUserInfo({
         emailAddress: localStorage.emailAddress,
         password: localStorage.password,
@@ -45,8 +49,42 @@ function App() {
         lastName: localStorage.lastName,
         id: +localStorage.id
       })
-    }
+    };
   }, [])
+
+  //Global signIn() method
+  const signIn = (emailAddress, password) => {
+    fetch(userUrl, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8", 
+            "Authorization": 'Basic ' + btoa(`${emailAddress}:${password}`)
+        }
+    })
+    .then(res => {
+        if(res.status === 500) {
+            // navigate('/error');
+        } else {
+            return res.json();
+        }
+    })
+    .then(data => {
+        if(data.message) {
+            updateMsg(data.message);
+        } else {
+            updateUserInfo(data.user);
+            updateUserInfo(prevState => ({...prevState, password: password}));
+            localStorage.setItem('emailAddress', data.user.emailAddress);
+            localStorage.setItem('password', password);
+            localStorage.setItem('firstName', data.user.firstName);
+            localStorage.setItem('lastName', data.user.lastName);
+            localStorage.setItem('id', data.user.id);
+        };
+    })
+    .catch((error) => {
+        console.log('Error:', error);
+    });
+  }
 
   return (
     <div id="root">
@@ -88,21 +126,23 @@ function App() {
               <Route
                 path="/signup"
                 element={<UserSignUp 
-                  liftUserInfo = {liftUserInfo}
+                  signIn = {signIn}
                 />}
               />
 
               <Route
                 path="/signin"
                 element={<UserSignIn 
-                  liftUserInfo = {liftUserInfo}
+                  signIn = {signIn}
+                  userInfo = {userInfo}
+                  valErrorMsg = {valErrorMsg}
                 />}
               />
 
               <Route
                 path="/signout"
                 element={<UserSignOut 
-                  liftUserInfo = {liftUserInfo}
+                  signOut = {signOut}
                 />}
               />
 

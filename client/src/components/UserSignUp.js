@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useNavigate, Link } from 'react-router-dom';
 
 
-const UserSignUp = ({liftUserInfo}) => {
+const UserSignUp = ({signIn}) => {
 
     const url = 'http://localhost:5000/api/users';
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
@@ -14,16 +14,6 @@ const UserSignUp = ({liftUserInfo}) => {
     })
 
     const [valErrors, updateErrors] = useState([])
-
-    const [userId, updateUserId] = useState({})
-
-    useEffect(() => {
-        liftUserInfo(userId)
-        if(userId.id) {
-            navigate('/')
-        }
-        // eslint-disable-next-line
-    }, [userId])
 
     // Create new user
     const createUser = () => {
@@ -37,7 +27,8 @@ const UserSignUp = ({liftUserInfo}) => {
         .then(res => {
             console.log(res.status);
             if(res.status  === 201) {
-                getUser();
+                signIn(formBody.emailAddress, formBody.password);
+                navigate('/');
             } else if(res.status === 500) {
                 navigate('/error')
             } else {
@@ -54,37 +45,7 @@ const UserSignUp = ({liftUserInfo}) => {
             console.log('Error:', error);
         });
     }
-
-    // Sign in newly created user
-    const getUser = () => {
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8", 
-                "Authorization": 'Basic ' + btoa(`${formBody.emailAddress}:${formBody.password}`)
-            }
-        })
-        .then(res => {
-            if(res.status === 500) {
-                navigate('/error');
-            } else {
-                return res.json();
-            }
-        })
-        .then(data => {
-            if(data.user) {
-                updateUserId(data.user);
-                updateUserId(prevState => ({...prevState, password: formBody.password}));
-            } else {
-                console.log(data.message);
-            }
-        })
-        .catch((error) => {
-            console.log('Error:', error);
-        });
-    }
     
-
     return (  
         <div  className="form--centered">
             <h2>Sign Up</h2>

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, Link, useLocation } from 'react-router-dom';
 
-const UserSignIn = ({liftUserInfo}) => {
+const UserSignIn = ({signIn, userInfo, valErrorMsg}) => {
 
-    const url = 'http://localhost:5000/api/users';
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -13,20 +12,13 @@ const UserSignIn = ({liftUserInfo}) => {
         password: ''
     })
 
-    const [userId, updateUserId] = useState({});
-
-    const [valErrorMsg, updateMsg] = useState([])
-
     const prevLocation = location.state?.prevLocation;
 
     //Navigate to the previous page in history w/ state sent from the page that directed to the signIn page - https://reactrouter.com/en/v6.3.0/upgrading/v5#use-usenavigate-instead-of-usehistory
     useEffect(() => {
-        if(userId.id) {
-            liftUserInfo(userId);
-        }
 
         const failPaths = ['/error', '/forbidden', '/notfound', '/signout', '/signin', '/signup'];
-        if(userId.id) {
+        if(userInfo.id) {
             if(!location.state || failPaths.includes(prevLocation)) {
                 navigate('/');
             } else {
@@ -34,35 +26,7 @@ const UserSignIn = ({liftUserInfo}) => {
             }
         }
         // eslint-disable-next-line
-    }, [userId])
-
-    const getUser = () => {
-        fetch(url, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json; charset=utf-8", 
-                "Authorization": 'Basic ' + btoa(`${formBody.emailAddress}:${formBody.password}`)
-            }
-        })
-        .then(res => {
-            if(res.status === 500) {
-                navigate('/error');
-            } else {
-                return res.json();
-            }
-        })
-        .then(data => {
-            if(data.message) {
-                updateMsg(data.message);
-            } else {
-                updateUserId(data.user);
-                updateUserId(prevState => ({...prevState, password: formBody.password}));
-            };
-        })
-        .catch((error) => {
-            console.log('Error:', error);
-        });
-    }
+    }, [userInfo])
 
     return (
         <div  className="form--centered">
@@ -80,7 +44,7 @@ const UserSignIn = ({liftUserInfo}) => {
             <form
                 onSubmit={(e) => {
                     e.preventDefault()
-                    getUser()
+                    signIn(formBody.emailAddress, formBody.password)
                 }}
             >
                 <label htmlFor="emailAddress">Email Address</label>
