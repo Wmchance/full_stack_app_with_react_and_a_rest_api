@@ -19,3 +19,4 @@ add SignIn link to bottom of SignUp component
 check on setting localStorage.setItem as an object
 navigate to /error when res.status === 500 in signIn() method in app.js
 remove validation errors when clicking to a new link & and then returning after failed signIn
+check for /error path when requests to the REST API return a '500 Internal Server Error' HTTP status code

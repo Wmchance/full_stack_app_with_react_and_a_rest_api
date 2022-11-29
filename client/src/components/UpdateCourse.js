@@ -33,18 +33,20 @@ const UpdateCourse = () => {
             }
         })    
         .then((data) => {
-            if(data.course.userId !== authUser.id) {
-                navigate('/forbidden');
-            } else {
-                updateInfo(data.course);
-                updateFormInfo({
-                    id: data.course.id,
-                    title: data.course.title,
-                    description: data.course.description,
-                    userId: data.course.userId,
-                    estimatedTime: data.course.estimatedTime,
-                    materialsNeeded: data.course.materialsNeeded
-                });
+            if(data) {
+                if(data.course.userId !== authUser.id) {
+                    navigate('/forbidden');
+                } else {
+                    updateInfo(data.course);
+                    updateFormInfo({
+                        id: data.course.id,
+                        title: data.course.title,
+                        description: data.course.description,
+                        userId: data.course.userId,
+                        estimatedTime: data.course.estimatedTime,
+                        materialsNeeded: data.course.materialsNeeded
+                    });
+                }
             }
         })
         .catch((error) => {
