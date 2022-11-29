@@ -6,6 +6,7 @@ const UserSignOut = ({liftUserInfo}) => {
     useEffect(() => {
         liftUserInfo([])
         navigate("/")
+        // eslint-disable-next-line
     }, [])
 }
 
