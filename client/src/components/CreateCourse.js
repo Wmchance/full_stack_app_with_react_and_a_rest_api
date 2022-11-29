@@ -14,10 +14,10 @@ const CreateCourse = () => {
         materialsNeeded: ''
     })
 
-    const [authUser, updateUser] = useState({
+    const authUser = {
         emailAddress: '',
         password: ''
-    })
+    }
 
     const [valErrors, updateErrors] = useState([])
 
@@ -56,7 +56,6 @@ const CreateCourse = () => {
         <AuthConsumer>
             { context => {
                 formBody.userId = context.id;
-                // add in onSubmit - use updateUser
                 authUser.emailAddress = context.emailAddress;
                 authUser.password = context.password;
 
