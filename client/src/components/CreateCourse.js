@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { AuthConsumer } from "./Context";
 
 const CreateCourse = () => {
@@ -121,8 +121,6 @@ const CreateCourse = () => {
                             >Cancel
                             </button>
                         </form>
-
-                        <p>Don't have a user account? Click here to <Link to="/signup">sign up</Link>!</p>
                     </div>
                 );
             }}
