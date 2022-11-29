@@ -26,6 +26,7 @@ const Courses = () => {
 
     useEffect(() => {
         getCourses()
+        // eslint-disable-next-line
       }, []) 
 
     return (
