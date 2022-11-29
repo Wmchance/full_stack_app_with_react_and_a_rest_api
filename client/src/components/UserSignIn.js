@@ -13,7 +13,9 @@ const UserSignIn = ({liftUserInfo}) => {
         password: ''
     })
 
-    const [userId, updateUserId] = useState({})
+    const [userId, updateUserId] = useState({});
+
+    const [valErrorMsg, updateMsg] = useState([])
 
     const prevLocation = location.state?.prevLocation;
 
@@ -45,14 +47,14 @@ const UserSignIn = ({liftUserInfo}) => {
         .then(res => {
             if(res.status === 500) {
                 navigate('/error');
-            } else if(res.status === 401) {
-                navigate('/forbidden');
             } else {
                 return res.json();
             }
         })
         .then(data => {
-            if(data) {
+            if(data.message) {
+                updateMsg(data.message);
+            } else {
                 updateUserId(data.user);
                 updateUserId(prevState => ({...prevState, password: formBody.password}));
             };
@@ -65,6 +67,15 @@ const UserSignIn = ({liftUserInfo}) => {
     return (
         <div  className="form--centered">
             <h2>Sign In</h2>
+
+            <>
+                {valErrorMsg.length > 0 &&
+                    <div className="validation--errors">
+                        <h3>Validation Error</h3>
+                        <p> Please enter a valid email address and password </p>
+                    </div>
+                }
+            </>
 
             <form
                 onSubmit={(e) => {
