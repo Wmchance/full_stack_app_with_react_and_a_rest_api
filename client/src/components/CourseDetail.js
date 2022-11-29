@@ -41,10 +41,10 @@ const CourseDetails = () => {
       }, [location.pathname]
     ) 
 
-    const [authUser, updateUser] = useState({
+    const authUser = {
         emailAddress: '',
         password: ''
-    })
+    }
 
     const deleteCourse = () => {
         fetch(url, {
