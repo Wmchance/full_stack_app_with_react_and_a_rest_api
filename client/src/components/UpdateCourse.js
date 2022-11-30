@@ -133,27 +133,28 @@ const UpdateCourse = () => {
                         >
                             <div className="main--flex">
                                 <div>
+                                    {/* https://www.w3schools.com/Jsref/event_oninput.asp */}
                                     <label htmlFor="courseTitle">Course Title</label>
                                     <input id="courseTitle" name="courseTitle" type="text" defaultValue={courseInfo.title}
-                                        onChange = {(e) => updateFormInfo(prevState => ({...prevState, title: e.target.value}))}
+                                        onInput = {(e) => updateFormInfo(prevState => ({...prevState, title: e.target.value}))}
                                     />
 
                                     <p>By {courseInfo.User?.firstName} {courseInfo.User?.lastName}</p>
 
                                     <label htmlFor="courseDescription">Course Description</label>
                                     <textarea id="courseDescription" name="courseDescription" defaultValue={courseInfo.description}
-                                        onChange = {(e) => updateFormInfo(prevState => ({...prevState, description: e.target.value}))}
+                                        onInput = {(e) => updateFormInfo(prevState => ({...prevState, description: e.target.value}))}
                                     ></textarea>
                                 </div>
                                 <div>
                                     <label htmlFor="estimatedTime">Estimated Time</label>
                                     <input id="estimatedTime" name="estimatedTime" type="text" defaultValue={courseInfo.estimatedTime}
-                                        onChange = {(e) => updateFormInfo(prevState => ({...prevState, estimatedTime: e.target.value}))}
+                                        onInput = {(e) => updateFormInfo(prevState => ({...prevState, estimatedTime: e.target.value}))}
                                     />
 
                                     <label htmlFor="materialsNeeded">Materials Needed</label>
                                     <textarea id="materialsNeeded" name="materialsNeeded" defaultValue={courseInfo.materialsNeeded}
-                                         onChange = {(e) => updateFormInfo(prevState => ({...prevState, materialsNeeded: e.target.value}))}
+                                         onInput = {(e) => updateFormInfo(prevState => ({...prevState, materialsNeeded: e.target.value}))}
                                     ></textarea>
                                 </div>
                             </div>
