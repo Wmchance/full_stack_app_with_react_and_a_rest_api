@@ -5,7 +5,7 @@ const NotFound = () => {
     
     const navigate = useNavigate();
     useEffect(() => {
-        navigate('/notfound');
+        navigate('/notfound'); //This ensures that if the user signs in after navigating to an undefined route, they are redirected to the home page instead of that undefined route
         // eslint-disable-next-line
     }, [])
     

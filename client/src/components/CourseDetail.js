@@ -7,12 +7,15 @@ const CourseDetail = () => {
     
     const navigate = useNavigate();
     const location = useLocation(); //React hook to grab data about the location of the current page
+    
+    //Pulls the path name from the current url to get the current course id & uses it to set the url to be used with the api calls
     const [courseId, updateId] = useState(location.pathname);
-
     const url = `http://localhost:5000/api${courseId}`;
 
+    //Stores the course info for the fetched course
     const [courseInfo, updateInfo] = useState([]);
 
+    //Makes fetch req to get details for each course to be displayed 
     const getCourse = () => {
         fetch(url)
         .then((res) => {
@@ -34,6 +37,7 @@ const CourseDetail = () => {
         });
     }
 
+    //updates the course id & url each time the pathname changes and makes the api call again to rerender the info for the new course
     useEffect(() => {
         updateId(location.pathname);
         getCourse();
@@ -41,11 +45,13 @@ const CourseDetail = () => {
       }, [location.pathname]
     ) 
 
+    //Stores the info for an authenticated user if one is signed in
     const authUser = {
         emailAddress: '',
         password: ''
     }
 
+    //Sends req to api to delete current course - uses authUser info in Authorization header
     const deleteCourse = () => {
         fetch(url, {
             method: "DELETE",
@@ -83,6 +89,7 @@ const CourseDetail = () => {
                             authUser.emailAddress = context.emailAddress;
                             authUser.password = context.password;
 
+                            //displays the update & delete buttons only if the authUser is the owner of the current course
                             if(context.id && context.id === courseInfo.userId) {
                                 return (
                                     <React.Fragment>

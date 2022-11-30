@@ -5,8 +5,9 @@ const Courses = () => {
     
     const navigate = useNavigate();
     const url = 'http://localhost:5000/api/courses';
-    const [coursesInfo, updateInfo] = useState([]);
+    const [coursesInfo, updateInfo] = useState([]); //Stores data for all courses fetched from the db 
 
+    //Makes a fetch req to pull in all a data for each course stored in the db & stores the retrieved info in the above State
     const getCourses = () => {
         fetch(url)
         .then((res) => {
@@ -31,6 +32,8 @@ const Courses = () => {
 
     return (
         <div className="wrap main--grid">
+            
+            {/* Maps through the array of course data retrieved from the db and displays them */}
             {coursesInfo.map((course) => {
                 return(
                     <Link className="course--module course--link" to={`courses/${course.id}`} key={course.id}>

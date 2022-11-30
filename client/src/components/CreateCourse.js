@@ -5,7 +5,9 @@ import { AuthConsumer } from "./Context";
 const CreateCourse = () => {
 
     const url = 'http://localhost:5000/api/courses';
-    const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
+    const navigate = useNavigate();
+    
+    //Stores the info entered into the create course form by the user
     const [formBody, updateFormInfo] = useState({
         title: '',
         description: '',
@@ -14,13 +16,16 @@ const CreateCourse = () => {
         materialsNeeded: ''
     })
 
+    //Stores the info of the authenticated user - users must be authenticated to create a course
     const authUser = {
         emailAddress: '',
         password: ''
     }
 
+    //Stores the values of any validation errors returned from the createCourse POST request
     const [valErrors, updateErrors] = useState([])
 
+    //Uses the authUser & formBody info to make a POST req to the db - adds a new course if successful & provides validation errors if there are any
     const createCourse = () => {
         fetch(url, {
             method: "POST",
@@ -55,6 +60,7 @@ const CreateCourse = () => {
     return (
         <AuthConsumer>
             { context => {
+                //Gets info from Context API to use in the createCourse POST request
                 formBody.userId = context.id;
                 authUser.emailAddress = context.emailAddress;
                 authUser.password = context.password;

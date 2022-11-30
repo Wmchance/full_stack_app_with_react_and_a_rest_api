@@ -6,6 +6,8 @@ const UserSignUp = ({signIn}) => {
 
     const url = 'http://localhost:5000/api/users';
     const navigate = useNavigate(); //Allow for the url and route to reflect the searched for defaultValue(Navigates to the given url)
+    
+    //Stores the info entered into the signup form by the user
     const [formBody, updateFormInfo] = useState({
         firstName: '',
         lastName: '',
@@ -13,9 +15,10 @@ const UserSignUp = ({signIn}) => {
         password: ''
     })
 
+    //Stores the values of any validation errors returned from the createCourse POST request
     const [valErrors, updateErrors] = useState([])
 
-    // Create new user
+    //Uses the formBody info to make a POST req to the db - adds a new user & calls the global signIn method if successful - provides validation errors if there are any
     const createUser = () => {
         fetch(url, {
             method: "POST",

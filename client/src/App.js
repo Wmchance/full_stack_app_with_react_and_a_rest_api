@@ -30,7 +30,7 @@ function App() {
 
   //Global signOut() method
   const signOut = (userInfo) => {
-    // Remove user info from global state
+    // Remove user info from global state - receives a call with an empty body from the signOut component
     updateUserInfo(userInfo);
     //remove user info from local storage
     localStorage.setItem('emailAddress', '');
@@ -40,7 +40,7 @@ function App() {
     localStorage.setItem('id', '');
   }
 
-  //Stay signed in with LocalStorage if available
+  //Stay signed in with LocalStorage if available - checks if there is any info in local storage, and if so, uses it to set the user info
   useEffect(() => {
     if(localStorage.emailAddress) {
       updateUserInfo({
@@ -53,7 +53,7 @@ function App() {
     };
   }, [])
 
-  //Global signIn() method
+  //Global signIn() method - takes email & password args to be used in the authorization header of the signIn GET req
   const signIn = (emailAddress, password) => {
     fetch(userUrl, {
         method: "GET",
@@ -73,8 +73,10 @@ function App() {
         if(data.message) {
             updateMsg(data.message);
         } else {
+            //Set data for current user in global state
             updateUserInfo(data.user);
             updateUserInfo(prevState => ({...prevState, password: password}));
+            //Use local storage values so that the authenticated state is maintained after refreshes or opening in a new tab
             localStorage.setItem('emailAddress', data.user.emailAddress);
             localStorage.setItem('password', password);
             localStorage.setItem('firstName', data.user.firstName);

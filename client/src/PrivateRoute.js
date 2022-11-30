@@ -7,6 +7,7 @@ const PrivateRoute = ({ children }) => {
   
   const location = useLocation();
 
+  //Checks if there is an authenticated user - sends to the requested route('children') if so & to the signIn page if not
   return (
     <AuthConsumer>
       { context => (
