@@ -36,7 +36,6 @@ const CreateCourse = () => {
             body: JSON.stringify(formBody)
         })
         .then(res => {
-            console.log(res.status);
             if(res.status === 201) {
                 navigate('/');
             } else if(res.status === 500) {
@@ -47,8 +46,6 @@ const CreateCourse = () => {
         })
         .then(data => {
             if(data) {
-                console.log(data.errors);
-                console.log(data.errors.length);
                 updateErrors(data.errors);
             }
         })

@@ -28,7 +28,6 @@ const UserSignUp = ({signIn}) => {
             body: JSON.stringify(formBody)
         })
         .then(res => {
-            console.log(res.status);
             if(res.status  === 201) {
                 signIn(formBody.emailAddress, formBody.password);
                 navigate('/');
@@ -40,7 +39,6 @@ const UserSignUp = ({signIn}) => {
         })
         .then(data => {
             if(data) {
-                console.log(data.errors);
                 updateErrors(data.errors);
             }
         })

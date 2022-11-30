@@ -87,7 +87,6 @@ const UpdateCourse = () => {
             body: JSON.stringify(formBody)
         })
         .then(res => {
-            console.log(res.status);
             if(res.status === 204) {
                 navigate('/');
             } else if(res.status === 500) {
@@ -98,8 +97,6 @@ const UpdateCourse = () => {
         })
         .then(data => {
             if(data) {
-                console.log(data);
-                console.log(data.errors);
                 updateErrors(data.errors);
             }
         })
