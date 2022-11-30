@@ -10,7 +10,7 @@ import { AuthProvider } from "./components/Context";
 import PrivateRoute from "./PrivateRoute";
 
 import Courses from './components/Courses';
-import CourseDetails from './components/CourseDetail';
+import CourseDetail from './components/CourseDetail';
 import UserSignIn from './components/UserSignIn';
 import UserSignUp from './components/UserSignUp';
 import CreateCourse from './components/CreateCourse';
@@ -101,7 +101,7 @@ function App() {
 
               <Route 
                 path="courses/:id"
-                element={<CourseDetails />}
+                element={<CourseDetail />}
               />
               
               {/* https://dev.to/iamandrewluca/private-route-in-react-router-v6-lg5 */}

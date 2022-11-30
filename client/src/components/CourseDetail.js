@@ -3,7 +3,7 @@ import { useLocation, Link, useNavigate } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown'; //https://www.npmjs.com/package/react-markdown
 import { AuthConsumer } from "./Context";
 
-const CourseDetails = () => {
+const CourseDetail = () => {
     
     const navigate = useNavigate();
     const location = useLocation(); //React hook to grab data about the location of the current page
@@ -132,4 +132,4 @@ const CourseDetails = () => {
 
 }
 
-export default CourseDetails;
+export default CourseDetail;
