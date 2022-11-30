@@ -3,6 +3,7 @@ import {
   BrowserRouter,
   Routes,
   Route,
+  redirect
 } from "react-router-dom";
 
 import { AuthProvider } from "./components/Context";
@@ -63,7 +64,7 @@ function App() {
     })
     .then(res => {
         if(res.status === 500) {
-            // navigate('/error');
+            return redirect('/error');
         } else {
             return res.json();
         }
