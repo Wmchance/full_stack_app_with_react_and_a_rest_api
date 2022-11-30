@@ -92,7 +92,7 @@ const CourseDetails = () => {
                                                 e.preventDefault()
                                                 deleteCourse()
                                             }}
-                                        >Delete Course</button> {/* create live link */}
+                                        >Delete Course</button>
                                     </React.Fragment>
                                 );
                             }
